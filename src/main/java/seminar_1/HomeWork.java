@@ -6,6 +6,23 @@ import java.util.stream.Collectors;
 
 public class HomeWork {
     public static void main(String[] args) {
+
+        /*
+        Домашнее задание указанное на странице после семинара.
+        Напишите программу, которая использует Stream API для обработки списка чисел.
+        Программа должна вывести на экран среднее значение всех четных чисел в списке.
+         */
+        List<Integer> listIntegers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
+        System.out.println("Среднее арифметическое четных чисел в массиве " +
+                listIntegers.stream()
+                        .filter(it -> it %2 == 0)
+                        .mapToDouble(it -> it)
+                        .average()
+                        .getAsDouble());
+        System.out.println();
+        /*
+        Домашнее задание указанное в семинаре
+         */
         List<Department> departments = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
             departments.add(new Department("Department #" + i));
@@ -31,28 +48,31 @@ public class HomeWork {
         System.out.println(countPersons(persons, 22, 50000));
         System.out.println();
 
-        System.out.println("\nСредняя зарплата в департаменте 1");
+        System.out.println("Средняя зарплата в департаменте 1");
         System.out.println(averageSalary(persons, 1).getAsDouble());
         System.out.println();
 
-        System.out.println("\nГруппировка работников по департаментам");
+        System.out.println("Группировка работников по департаментам");
         for (Map.Entry<Department, List<Person>> entry : groupByDepartment(persons).entrySet()) {
             System.out.println(entry.getKey().getName() + ": количество сотрудников " + entry.getValue().size());
         }
+        System.out.println();
 
-        System.out.println("\nМаксимальная зарплата в каждом департаменте");
+        System.out.println("Максимальная зарплата в каждом департаменте");
         for (Map.Entry<Department, Double> entry : maxSalaryByDepartment(persons).entrySet()) {
             System.out.print(entry.getKey().getName() + ": ");
             System.out.println(entry.getValue());
         }
+        System.out.println();
 
-        System.out.println("\nСписок работников по департаментам");
+        System.out.println("Список работников по департаментам");
         for (var entry : groupPersonNamesByDepartment(persons).entrySet()) {
             System.out.print(entry.getKey().getName() + ": ");
             System.out.println(entry.getValue());
         }
+        System.out.println();
 
-        System.out.println("\nСотрудник с минимальной зарплатой в каждом департаменте");
+        System.out.println("Сотрудник с минимальной зарплатой в каждом департаменте");
         minSalaryPersons(persons)
                 .forEach(p -> System.out.println(p.getDepartment().getName() + ": " + p));
     }
